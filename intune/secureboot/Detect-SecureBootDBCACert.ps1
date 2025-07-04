@@ -8,7 +8,7 @@ if ($SecureBootUpdateStatus) {
    Write-Output "SecureBootUEFI DB is not up to date"
    $remediate = "1"
 }
-# Detect-SecureBoot
+# Detect-SecureBoot.ps1
 $SecureBoot = Confirm-SecureBootUEFI
 if ($SecureBoot) {
    Write-Output "SecureBoot confirmed enabled"
