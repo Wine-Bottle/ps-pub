@@ -48,7 +48,9 @@ if ($reboot -eq $null) {
 }
 # Reboot flag -> Reboot + reboot noti
 if ($reboot) {
+   New-Item "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update\RebootRequired" | Out-Null
    New-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update\RebootRequired" -Name "UpdatePending" -Value "1" -PropertyType "DWord" -Force | Out-Null
+   New-ItemProperty "HKLM:\SOFTWARE\Microsoft\WindowsUpdate\Orchestrator" | Out-Null
    New-ItemProperty "HKLM:\SOFTWARE\Microsoft\WindowsUpdate\Orchestrator" -Name "ShutdownFlyoutOptions" -Value "10" -PropertyType "DWord" -Force | Out-Null
    New-ItemProperty "HKLM:\SOFTWARE\Microsoft\WindowsUpdate\Orchestrator" -Name "EnhancedShutdownEnabled" -Value "1" -PropertyType "DWord" -Force | Out-Null
    # BitLocker OS drive status checks -> Suspend twice
